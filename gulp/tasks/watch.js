@@ -1,7 +1,6 @@
 const gulp = require("gulp");
 const watch = require("gulp-watch");
 const browserSync = require("browser-sync").create();
-const reload = browserSync.reload;
 const nodemon = require("gulp-nodemon");
 
 gulp.task("watch", ["nodemon"], () => {
@@ -40,7 +39,7 @@ gulp.task("nodemon", function(cb) {
   return nodemon({
     script: "index.js",
     ext:"js ejs",
-    ignore:["debug.json", "error.json", "info.json"]
+    ignore:["debug.json", "error.json", "info.json", "stuff.json"]
   }).on("start", function() {
     /* to avoid nodemon being started multiple times */
     /* thanks @matthisk */
