@@ -3,7 +3,7 @@ const watch = require("gulp-watch");
 const browserSync = require("browser-sync").create();
 const nodemon = require("gulp-nodemon");
 
-gulp.task("watch", ["nodemon"], () => {
+gulp.task("watch", ["nodemon", "cssInject", "adminCssInject", "scriptsRefresh"], () => {
   browserSync.init(null, {
     proxy: "http://localhost:3000",
     port: 3001
