@@ -3,10 +3,6 @@
   "homepage": "https://foxdesignagency.com/aristos",
   "version": "0.0.5",
   "description": "A basic EJS CMS built with love, powered by hardwork, JQuery, Gulp, Webpack, Mocha, Mongo, and Nodejs",
-  "keywords": [
-    "Nodejs CMS",
-    "Fox Design Agency, Aristos CMS"
-  ],
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
@@ -20,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/Fox-Design-Agency/Aristos-CMS-node"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
