@@ -1,6 +1,6 @@
 # Aristos CMS - Node Version
 - **Finalizing the update stream**
-- **project will be production ready after rewrite**
+- **project will be mostly production ready after rewrite**
 
 This is the Node version for the Aristos Content Managment System (CMS).
 
@@ -21,11 +21,31 @@ You will be prompted for information so have this ready before starting the inst
 - admin username
 - admin password
 Once you have this information, then make whatever you want.
+
 ```
 mkdir <whatever you name your directory>
 cd <whatevevr you named your directory>
 yo aristos
 ```
+
+If you would like to also install an upgrade/plugin package, add the appropiate flag:
+```
+--blog
+--contact
+--data
+--documentation
+--newsletter
+--portfolio
+--products
+--management
+```
+
+an example of using a simple or multiple option flags are as shown:
+```
+yo aristos --blog
+yo aristos --products --blog
+```
+Each option flag needs a space after it, otherwise two options will be seen by the generator as a single option and not function correctly.
 
 Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to help you get started. It's just pretty lame right now.
 
