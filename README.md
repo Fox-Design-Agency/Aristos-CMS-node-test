@@ -47,6 +47,19 @@ yo aristos --products --blog
 ```
 Each option flag needs a space after it, otherwise two options will be seen by the generator as a single option and not function correctly.
 
+The current state of the upgrade/plugin packages should also be noted:
+#### Upgrades
+    - blog: comments are not a thing right now, but should be
+    - contact: can recieve contact but not much else
+    - data: not a thing
+    - documentation: Mostly works
+    - newsletter: not a thing
+    - portfolio: Mostly works, editing images doesnt always work on first try
+    - products: Mostly works
+    - management: Needs complete rewrite
+#### Plugins
+    - printful: option flag not set, needs complete rewrite after product upgrade becomes finalized
+
 Soon, [Aristos Builder](https://aristosbuilder.com/) will be a great resource to help you get started. It's just pretty lame right now.
 
 For documentation, check out [Fox Design Agency](https://foxdesignagency.com/aristos/documentation)
