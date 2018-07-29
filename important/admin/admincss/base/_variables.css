@@ -1,6 +1,6 @@
 /* used for: nav-header background */
 $main: #5cdb95;
-/* used for: table heads */
+/* used for: table heads and template builder */
 $lightMain: #8ee4af;
 /* used for:  main background */
 $mainBackground: #EDF5E1;
@@ -8,7 +8,7 @@ $mainBackground: #EDF5E1;
 $secondaryBackground: #379683;
 /* used for:  */
 $contrastBackground: #05386b;
-/* used for:header nav borders */
+/* used for:header nav borders, template builder hovers */
 $borderOne: #f0f8ff;
 /* used for: table borders */
 $borderTwo: #379683;
@@ -28,8 +28,8 @@ $hoverDanger: #FF0000;
 $transitionDangerHover:  #b22222;
 /* used for: used for titles, and main nav colors */
 $titleColor: #f0f8ff;
-/* used for: sub title one*/
-$subTitleColor: ##05386B;
+/* used for: sub title one and template builder icons */
+$subTitleColor: #05386B;
 /* used for: used for base font color */
 $fontColor: #05386B;
 /* used for: global set for all links */

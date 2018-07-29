@@ -1,7 +1,7 @@
 {
   "name": "aristos-node-cms",
   "homepage": "https://foxdesignagency.com/aristos",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "A basic EJS CMS built with love, powered by hardwork, JQuery, Gulp, Webpack, Mocha, Mongo, and Nodejs",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,8 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.2.0",
     "fs-extra": "^7.0.0",
+    "grapejs": "^2.1.0",
+    "grapesjs-blocks-basic": "^0.1.8",
     "jquery": "^3.3.1",
     "jquery-smooth-scroll": "^2.2.0",
     "lazysizes": "^4.0.4",
