@@ -7,7 +7,7 @@ const addErrorEvent = require("../../../../AristosStuff/AristosLogger/AristosLog
  * @return {promise} A promise that resolves with the Page that was created
  */
 module.exports = () => {
-  return MediaCategory.count({}).then(c => {
+  return MediaCategory.estimatedDocumentCount({}).then(c => {
       return c
     })
 };
