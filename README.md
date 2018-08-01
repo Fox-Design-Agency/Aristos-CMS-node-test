@@ -50,7 +50,7 @@ Each option flag needs a space after it, otherwise two options will be seen by t
 The current state of the upgrade/plugin packages should also be noted:
 #### Upgrades
     - blog: comments are not a thing right now, but should be
-    - contact: can recieve contact but not much else
+    - contact: can receive contact but not much else
     - data: not a thing
     - documentation: Mostly works
     - newsletter: not a thing
