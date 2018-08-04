@@ -112,7 +112,7 @@ module.exports = {
             });
           });
         } else {
-          fs.ensureDir(`content/public/images/${category}`, err => {
+          fs.ensureDir("content/public/images/" + category, err => {
             if (err) {
               addErrorEvent(err, "media uploadCreate error");
             }
