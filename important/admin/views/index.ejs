@@ -1,7 +1,7 @@
 <% include ./_layouts/adminheader %>
 <h2 class="admin-page__main-title">Dashboard</h2>
 <% include _layouts/messages/messages %>
-<% if(contactManagementExists) { %>
+<% if(typeof(contactManagementExists) !== "undefined") { %>
 <div class="admin-section__dashboard-row">
     <% if (message.length !== 0){ %>
     <div class="admin-section__dashboard-row__notepad">
