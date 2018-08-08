@@ -106,7 +106,8 @@ module.exports = {
                 slug: slug,
                 author: author,
                 description: description,
-                keywords: keywords
+                keywords: keywords,
+                sorting: 0
               };
               CreateDocumentationCategory(CategoryProps);
               req.flash("success_msg", "Documentation Category Added!");
@@ -211,14 +212,14 @@ module.exports = {
     req.flash("success_msg", "Documentation Category Deleted!");
     res.redirect("/admin/documentation-builder-categories");
   } /* end of delete function */,
+
   reorder(req, res, next) {
     const User = FindOneUserByID(req.session.passport.user);
     User.then(user => {
       if (user.admin === 1) {
         let ids = req.body["id[]"];
         SortDocumentationCategories(ids);
-        /* look into this more */
-        //   req.app.locals.pages = sortedRes;
+       
       } else {
         res.redirect("/users/login");
       }

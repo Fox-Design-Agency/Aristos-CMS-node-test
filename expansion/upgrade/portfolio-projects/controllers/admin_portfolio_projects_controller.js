@@ -11,6 +11,7 @@ const CreateProject = require("../models/queries/project/CreateProject");
 const EditProject = require("../models/queries/project/EditProject");
 const DeleteProject = require("../models/queries/project/DeleteProject");
 const FindAllSortedProjects = require("../models/queries/project/FindAllSortedProjects");
+const FindAllSortedProjectsWithParam = require("../models/queries/project/FindSortedProjectsWithParams");
 const SortProjectsByID = require("../models/queries/project/SortProjectByID");
 /* media model Queries */
 const FindAllMedia = require("../../../../important/admin/adminModels/queries/media/FindAllMedia");
@@ -22,15 +23,37 @@ const FindAllProjectCategories = require("../models/queries/projectCategory/Find
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
 module.exports = {
   index(req, res, next) {
-    FindAllSortedProjects().then(projects => {
+    const theCount = CountProjects();
+    const allSorted = FindAllSortedProjects();
+    const allCategories = FindAllProjectCategories();
+    Promise.all([theCount, allSorted, allCategories]).then(result => {
       res.render(
         "../../../expansion/upgrade/portfolio-projects/views/projects",
         {
-          projects: projects
+          count: result[0],
+          projects: result[1],
+          categories: result[2]
         }
       );
     });
   } /* end of index function */,
+  catIndex(req, res, next){
+    const theCount = CountProjects();
+    const sortedCat = FindAllSortedProjectsWithParam({category:req.params.category});
+    const allCategories = FindAllProjectCategories();
+    Promise.all([theCount, sortedCat, allCategories]).then(result => {
+      res.render(
+        "../../../expansion/upgrade/portfolio-projects/views/projects",
+        {
+          count: result[0],
+          projects: result[1],
+          categories: result[2]
+        }
+      );
+    });
+  }/* end of cat index function*/,
+
+
   addIndex(req, res, next) {
     let title,
       content,
@@ -132,7 +155,7 @@ module.exports = {
                 image: imageFile,
                 description: description,
                 keywords: keywords,
-                sorting: 100,
+                sorting: 0,
                 author: author
               };
               CreateProject(ProjectProps).then(project => {

@@ -66,6 +66,7 @@
     right: 10px;
     border-radius: 50%;
     background: $colorFive;
+    z-index: 10;
 
     &--second{
       bottom: 120px;

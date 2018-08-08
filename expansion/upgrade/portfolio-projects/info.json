@@ -11,6 +11,10 @@
     {
       "name": "add category",
       "link": "/admin/portfolio-categories/add-portfolio-category"
+    },
+    {
+      "name": "seel all categories",
+      "link": "/admin/portfolio-categories"
     }
   ]
 }

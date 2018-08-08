@@ -31,7 +31,10 @@ module.exports = {
     } else if (req.params.logname === "debug") {
       log = getAllDebugLogs();
       logname = "debug";
-    } else {
+    } else if (req.params.logname === "updates") {
+      log = getAllInfoLogs();
+      logname = "updates";
+    }else {
       log = getAllInfoLogs();
       logname = "info";
     }

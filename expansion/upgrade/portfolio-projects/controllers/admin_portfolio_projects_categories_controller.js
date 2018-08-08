@@ -117,7 +117,8 @@ module.exports = {
                 slug: slug,
                 author: author,
                 description: description,
-                keywords: keywords
+                keywords: keywords,
+                sorting: 0
               };
               CreateProjectCategory(CategoryProps);
               req.flash("success_msg", "Project Category Added!");

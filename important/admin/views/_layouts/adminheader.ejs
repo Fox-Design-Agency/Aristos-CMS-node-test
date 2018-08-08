@@ -20,9 +20,14 @@
             <div class="admin-nav" id="navbarsExampleDefault">
             <h4 class="admin-nav__section-header">basics</h4>
                 <ul class="admin-header__basics">
-                    <li class="admin-nav__nav-item">
-                        <a href="/admin">dashboard</a>
-                    </li>
+                    <div class="side-dropdown">
+                        <li class="admin-nav__nav-item">
+                            <a href="/admin">dashboard</a>
+                        </li>
+                        <div class="side-hovered-item" id="">
+                            <a class="admin-nav__nav-item" href="/admin/logs-viewer">see logs</a>
+                        </div>
+                    </div>
                     <div class="side-dropdown">
                     <li class="admin-nav__nav-item">
                         <a href="/admin/add-media">add media</a>

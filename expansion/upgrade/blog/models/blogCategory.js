@@ -6,6 +6,15 @@ const BlogCategorySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  author:{
+    type: String
+  },
+  description:{
+    type: String
+  },
+  keywords:{
+    type: String
+  },
   slug: {
     type: String
   },
