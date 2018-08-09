@@ -1,6 +1,8 @@
 const addErrorEvent = require("../../../AristosStuff/AristosLogger/AristosLogger")
   .addError;
 
+/* site stats stuff */
+
 /* the logs stuffs */
 const getAllInfoLogs = require("../../../AristosStuff/AristosLogger/AristosLogger")
   .readAllInfo;
@@ -18,7 +20,6 @@ module.exports = {
     ) {
       const LatestThreeTasks = require("../../../../expansion/upgrade/project-management/models/queries/tasks/FindLatestThreeTasks")();
       const LatestThreeMessages = require("../../../../expansion/upgrade/contact/models/queries/FindLatestThreeMessages")();
-
       Promise.all([LatestThreeTasks, LatestThreeMessages]).then(result => {
         return res.render("../../../important/admin/views/index", {
           content: "",
