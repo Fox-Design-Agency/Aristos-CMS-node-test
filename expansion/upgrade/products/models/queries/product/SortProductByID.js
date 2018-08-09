@@ -1,11 +1,21 @@
 /* not a thing yet */
 const Product = require("../../product");
 // Aristos Logger Path
-// const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").addError;
+const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
+  .addError;
+/**
+ * Sorts products by ids.
+ * @param {string} ids - The ids of the records to sort.
+ * @return {promise} A promise that resolves with the sorted products
+ */
 module.exports = ids => {
   return sortProducts(ids, function() {
-  Product.find({}).sort({ sorting: 1 });
-});
+    Product.find({})
+      .sort({ sorting: 1 })
+      .catch(err => {
+        errorAddEvent(err, "product query error");
+      });
+  });
 }; //* end of exports */
 
 // Sort product function
