@@ -1,14 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const auth = require("../../AppStuff/authorization/auth");
-const isAdmin = auth.isAdmin;
 const request = require("request");
 const fs = require("fs-extra");
 
+const addUpdateInfos = require("../AristosLogger/AristosLogger").addUpdate;
 /*
-* GET Latest Update
+* core Update Function
 */
-router.get("/", isAdmin, (req, res, next) => {
+let coreUpdate = () => {
   // request.get(
   //   "https://b5tx3g61ie.execute-api.us-east-2.amazonaws.com/default/AristosBasicUpdater",
 
@@ -19,19 +16,36 @@ router.get("/", isAdmin, (req, res, next) => {
   //       res.redirect("back");
   //       return console.error("upload failed:", error);
   //     }
-      
+
   //     const content = JSON.parse(body);
   //     content.forEach(stuff => {
   //       fs.outputFile(stuff.name, stuff.content);
   //     });
   //   }
   // );
+  // addUpdateInfos("some version #", "core update")
   // req.flash("success_msg", "System Updated!");
-  res.redirect("back");
-});
+  console.log("core works");
+}; /* end of core update function */
+/*
+* expansion Update Function
+*/
+let expansionUpdate = () => {
+  addUpdateInfos("some version #", "expansion update")
+  console.log("expansion works");
+}; /* end of expansion update function */
+
+/*
+* theme Update Function
+*/
+let themeUpdate = () => {
+  addUpdateInfos("some version #", "theme update")
+  console.log("theme works");
+}; /* end of theme update function */
 
 /* Exports */
-module.exports = router;
-        
-        
-        
+module.exports = {
+  coreUpdate,
+  expansionUpdate,
+  themeUpdate
+};

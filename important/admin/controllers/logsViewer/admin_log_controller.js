@@ -5,6 +5,8 @@ const getAllErrorLogs = require("../../../AristosStuff/AristosLogger/AristosLogg
   .readAllError;
 const getAllDebugLogs = require("../../../AristosStuff/AristosLogger/AristosLogger")
   .readAllDebug;
+const getAllUpdateLogs = require("../../../AristosStuff/AristosLogger/AristosLogger")
+  .readAllUpdates;
 
 /* clear log stuff */
 const clearInfoLogs = require("../../../AristosStuff/AristosLogger/AristosLogger")
@@ -32,9 +34,9 @@ module.exports = {
       log = getAllDebugLogs();
       logname = "debug";
     } else if (req.params.logname === "updates") {
-      log = getAllInfoLogs();
+      log = getAllUpdateLogs();
       logname = "updates";
-    }else {
+    } else {
       log = getAllInfoLogs();
       logname = "info";
     }

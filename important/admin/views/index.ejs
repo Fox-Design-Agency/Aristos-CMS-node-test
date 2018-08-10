@@ -7,9 +7,32 @@
             total site views:
         </h4>
         <h5>
-        
+            <%= Math.floor(siteViews) %>
+        </h5>
+        <h4>
+            total page views:
+        </h4>
+        <h5>
+            <%= Math.floor(totalViews/3) %>
         </h5>
     </div>
+    <div class="admin-blocks">
+        <h4>
+            total front-end page views:
+        </h4>
+        <h5>
+            <%= Math.floor(FrontEndViews/3) %>
+        </h5>
+    </div>
+</div>
+<div class="blocks-holder">
+    <% if(upgradeDashboard.length < 1){ %>
+      
+    <% }else{ %>
+        <% upgradeDashboard.forEach(inceptionLevelPromise=>{ %> 
+            <%- inceptionLevelPromise %>  
+        <% }) %>
+    <% } %>
 </div>
 
 <div class="admin-section__dashboard-row--divider">
