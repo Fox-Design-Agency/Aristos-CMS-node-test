@@ -14,7 +14,7 @@ async function readStuff() {
   let allTheStuff = [];
   const stuff = await grabStuff().then(dirs => {
     dirs.forEach(files => {
-      let someGoodName = require(`./${files}/dashboard.js`);
+      let someGoodName = require("./"+ files +"/dashboard.js");
       let waitingOnFunction = someGoodName
         .theFunction(someGoodName.name)
         .then(resolved => {

@@ -29,15 +29,15 @@ gulp.task(
 
     /* watch admin */
    
-    watch("./important/admin/views/**/*.ejs", () => {
-      browserSync.reload();
-    });
-    watch("./content/public/scripts/**/*.js", () => {
-      gulp.start("scriptsRefresh");
-    });
-    watch("./important/admin/admincss/**/*.css", () => {
-      gulp.start("adminCssInject");
-    });
+    // watch("./important/admin/views/**/*.ejs", () => {
+    //   browserSync.reload();
+    // });
+    // watch("./content/public/scripts/**/*.js", () => {
+    //   gulp.start("scriptsRefresh");
+    // });
+    // watch("./important/admin/admincss/**/*.css", () => {
+    //   gulp.start("adminCssInject");
+    // });
     
   }
 ); /* end of watch task */

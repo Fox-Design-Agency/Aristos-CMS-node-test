@@ -3,40 +3,37 @@ const router = express.Router();
 const auth = require("../../../../important/AppStuff/authorization/auth");
 
 const isAdmin = auth.isAdmin;
-const blogCategoriesController = require("../controllers/admin_blog_categories_controller");
-/*
-* GET category index
-*/
-router.get("/", isAdmin, blogCategoriesController.index);
+const blogController = require("../controllers/admin_blog_controller");
 
 /*
-* GET, POST add category
+* GET blog index
+*/
+router.get("/", isAdmin, blogController.index);
+
+/*
+* GET, POST add blog
 */
 router
-  .route("/add-blog-category")
-  .get(isAdmin, blogCategoriesController.addIndex)
-  .post(blogCategoriesController.create);
+  .route("/add-blog")
+  .get(isAdmin, blogController.addIndex)
+  .post(blogController.create);
 
 /*
-* GET, POST edit category
+* GET, POST edit blog
 */
 router
-  .route("/edit-blog-category/:id")
-  .get(isAdmin, blogCategoriesController.editIndex)
-  .post(blogCategoriesController.edit);
+  .route("/edit-blog/:id")
+  .get(isAdmin, blogController.editIndex)
+  .post(blogController.edit);
 
 /*
-* GET delete page
+* GET delete blog
 */
-router.delete(
-  "/delete-blog-category/:id",
-  isAdmin,
-  blogCategoriesController.delete
-);
+router.delete("/delete-blog/:id", isAdmin, blogController.delete);
 /* 
-* POST reorder blog category
+* POST reorder blogs
 */
-router.post("/reorder-blog-categories", blogCategoriesController.reorder);
+router.post("/reorder-blogs", blogController.reorder);
 
 /* Exports */
 module.exports = router;

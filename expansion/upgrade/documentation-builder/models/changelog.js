@@ -36,3 +36,4 @@ const ChangelogSchema = new Schema({
 });
 
 module.exports = mongoose.model("Changelog", ChangelogSchema);
+

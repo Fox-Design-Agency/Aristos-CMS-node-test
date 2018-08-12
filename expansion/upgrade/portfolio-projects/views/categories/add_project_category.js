@@ -1,15 +1,15 @@
 <%- include("../../../../../important/admin/views/_layouts/adminheader") %>
-    <h2 class="admin-page__main-title">Edit a Product Category</h2>
+    <h2 class="admin-page__main-title">add a portfolio category</h2>
     <% include ../../../../../important/admin/views/_layouts/messages/errors %>
-    <button class="admin-button admin-button--add-something">
-        <a href="/admin/product-categories">
+    <button class="admin-button admin-button--add-something"> 
+        <a  href="/admin/portfolio-categories">
             <i class="fa fa-hand-point-left"></i>
         </a>
     </button>
     <br>
     <br>
 
-    <form method="post" action="/admin/product-categories/edit-product-category/<%= id %>" class="admin-form">
+    <form method="post" action="/admin/portfolio-categories/add-portfolio-category" class="admin-form">
         <div class="admin-form__form-options--bottom-group">
             <div class="admin-form__form-options">
                 <div class="admin-form__group">
@@ -22,19 +22,7 @@
                     <input type="text" class="form-control" name="author" value="<%= author %>" placeholder="Author">
 
                 </div>
-                <div class="admin-form__group">
-                        <label for="">Image</label>
-                        <select name="imagepath">
-                                <% media.forEach(function(media){ %>
-                                   <% if(media.category == "product_categories"){ %>
-                                        <option value="<%= media.path %>">
-                                            <%= media.title %>
-                                        </option>
-                                        <% } %>
-                                            <% }) %>
-                            </select>
-    
-                    </div>
+               
             </div>
             <div class="admin-form__form-options admin-form__form-options--second-group">
                 <div class="admin-form__group">

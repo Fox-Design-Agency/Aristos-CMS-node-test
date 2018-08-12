@@ -1,15 +1,16 @@
 <%- include("../../../../important/admin/views/_layouts/adminheader") %>
-    <h2 class="admin-page__main-title">Edit product</h2>
+    <h2 class="admin-page__main-title">edit portfolio project</h2>
     <% include ../../../../important/admin/views/_layouts/messages/errors %>
-    <button class="admin-button admin-button--add-something">
-        <a class="btn-text" href="/admin/products">
+    <% include ../../../../important/admin/views/_layouts/messages/messages %>
+    <button class="admin-button admin-button--add-something"> 
+        <a  href="/admin/portfolio">
             <i class="fa fa-hand-point-left"></i>
         </a>
     </button>
     <br>
     <br>
 
-    <form method="post" action="/admin/products/edit-product/<%= id %>" enctype="multipart/form-data" class="admin-form">
+    <form method="post" action="/admin/portfolio/edit-project/<%= id %>" enctype="multipart/form-data" class="admin-form">
 
 <%- include ../../../../important/AristosStuff/AristosTextEditor/AristosTextEditor %>
 <div class="admin-form__form-options--bottom-group">
@@ -19,11 +20,6 @@
             <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
 
         </div>  
-        <div class="admin-form__group">
-            <label for="">Price</label>
-            <input  type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
-
-        </div> 
         <div class="admin-form__group">
             <label for="">Category</label>
             <select name="category" class="form-control">
@@ -47,7 +43,7 @@
                 <% if(image == "") { %>
                     <img id="noimage" src="/noimage.png" alt="">
                     <% } else { %>
-                        <img id="noimage" class="add-media-preview-image" src="/product_images/<%= id %>/<%= image %>" alt="">
+                        <img id="noimage" class="add-media-preview-image" src="/portfolio_images/<%= id %>/<%= image %>" alt="">
                         <% } %>
             </p>
 
@@ -75,13 +71,13 @@
             
         </div>
 </div>
-   
+    
 
         <button class="admin-button admin-button--submit">Submit</button>
-   
+
     </form>
 
-    <h3 class="page-header">Gallery</h3>
+    <h3 class="admin-page__main-title">Gallery</h3>
     <ul class="gallery">
         <% galleryImages.forEach(function(image){ %>
             <% if (image !== "thumbs") { %>
@@ -92,8 +88,7 @@
                 <% } %>
                     <% }); %>
     </ul>
-    <br>
-    <br>
+
     <form action="/admin/products/product-gallery/<%= id %>" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm">
         <div class="fallback">
             <input type="file" name="file" multiple>

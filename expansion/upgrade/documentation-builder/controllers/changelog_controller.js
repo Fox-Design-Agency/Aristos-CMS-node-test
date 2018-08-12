@@ -91,7 +91,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let keywords = req.body.keywords;
@@ -200,7 +200,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let id = req.params.id;
@@ -264,3 +264,4 @@ module.exports = {
     });
   }
 };
+

@@ -118,7 +118,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let price = req.body.price;
         let category = req.body.category;
@@ -423,7 +423,7 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/\s+/g, "-").toLowerCase();
+        let slug = title.replace(/s+/g, "-").toLowerCase();
         let content = req.body.content;
         let price = req.body.price;
         let category = req.body.category;
@@ -589,4 +589,5 @@ module.exports = {
     });
   }
 };
+
 

@@ -26,3 +26,4 @@ const BlogComments = new mongoose.Schema({
 
 /* end of blog comments functions */
 module.exports = mongoose.model("BlogComments", BlogComments);
+

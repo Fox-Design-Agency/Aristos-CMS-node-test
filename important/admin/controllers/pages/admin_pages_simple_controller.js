@@ -143,7 +143,6 @@ module.exports = {
         FindAllSortedPages().then(sortedRes => {
           req.app.locals.pages = sortedRes;
         });
-        res.redirect("back");
       } else {
         res.redirect("/users/login");
       }

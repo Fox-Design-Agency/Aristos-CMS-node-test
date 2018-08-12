@@ -57,3 +57,4 @@ module.exports = {
     res.redirect("back");
   } /* end of clear lgo function */
 };
+
