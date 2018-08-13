@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Page Schema
 const OrdersSchema = new mongoose.Schema({
   user: {
-    type: Type.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
   total: {
