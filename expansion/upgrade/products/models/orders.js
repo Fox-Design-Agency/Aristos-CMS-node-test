@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Page Schema
 const OrdersSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
   total: {
@@ -36,4 +36,5 @@ const OrdersSchema = new mongoose.Schema({
 });
 const Order = mongoose.model("Orders", OrdersSchema);
 module.exports = Order;
+
 
