@@ -14,3 +14,4 @@ module.exports = (_id, messageProps) => {
     errorAddEvent(err, "contact message query error");
   });
 };
+

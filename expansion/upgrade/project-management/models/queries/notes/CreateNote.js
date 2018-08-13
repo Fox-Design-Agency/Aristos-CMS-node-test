@@ -13,3 +13,4 @@ module.exports = noteProps => {
     errorAddEvent(err, "notes query error");
   });
 };
+

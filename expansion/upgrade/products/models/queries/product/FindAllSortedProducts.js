@@ -13,3 +13,4 @@ module.exports = () => {
       errorAddEvent(err, "product query error");
     });
 };
+

@@ -12,3 +12,4 @@ module.exports = stuff => {
     errorAddEvent(err, "product query error");
   });
 };
+

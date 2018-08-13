@@ -14,3 +14,4 @@ module.exports = (_id, documentationProps) => {
     errorAddEvent(err, "documentation query error");
   });
 };
+

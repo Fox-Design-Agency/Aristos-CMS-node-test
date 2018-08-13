@@ -12,3 +12,5 @@ module.exports = _id => {
     errorAddEvent(err, "blog query error")
   });
 };
+
+

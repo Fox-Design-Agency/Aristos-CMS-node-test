@@ -13,3 +13,4 @@ module.exports = () => {
     })
     .catch(err => errorAddEvent(err, "blog query error"));
 };
+

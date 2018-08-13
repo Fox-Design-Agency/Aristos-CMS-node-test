@@ -11,3 +11,5 @@ module.exports = () => {
     errorAddEvent(err, "changelog query error");
   });
 };
+
+

@@ -15,3 +15,4 @@ module.exports = _id => {
       errorAddEvent(err, "contact message query error");
     });
 };
+

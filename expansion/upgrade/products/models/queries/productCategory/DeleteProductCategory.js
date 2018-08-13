@@ -13,3 +13,4 @@ module.exports = _id => {
     errorAddEvent(err, "product category query error");
   });
 };
+

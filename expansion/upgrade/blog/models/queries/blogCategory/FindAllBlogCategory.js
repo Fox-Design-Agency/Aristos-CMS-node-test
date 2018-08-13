@@ -11,3 +11,5 @@ module.exports = () => {
     errorAddEvent(err, "blog category query error");
   });
 };
+
+
