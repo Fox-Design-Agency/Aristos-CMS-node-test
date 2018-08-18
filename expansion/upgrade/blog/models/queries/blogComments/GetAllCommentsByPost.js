@@ -7,10 +7,9 @@ const errorAddEvent = require("../../../../../../important/AristosStuff/AristosL
  * @param {object} stuff - The object containing the stuff to find.
  * @return {promise} A promise that resolves with the blog comment that matches the stuff param
  */
-module.exports = stuff => {
-  return BlogComments.find(stuff).catch(err => {
+module.exports = blogID => {
+  return BlogComments.find({blogref: blogID}).populate("user").catch(err => {
     errorAddEvent(err, "blog comment query error");
   });
 };
-
 

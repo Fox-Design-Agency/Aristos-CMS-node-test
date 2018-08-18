@@ -1,5 +1,5 @@
 .admin-blocks {
-  width: 250px;
+  width: 300px;
   border: 3px solid $colorFive;
   margin: 20px;
   padding: 10px;
@@ -8,6 +8,16 @@
   background: $colorTwo;
   transition: box-shadow 0.3s linear;
   border-radius: 0 50px 0 0;
+
+  &--wide{
+    width: 600px;
+    margin: 20px auto;
+  }
+
+  &--medium{
+    width: 350px;
+  }
+
 
   &:hover {
     box-shadow: 2px 5px 10px black; 
@@ -27,6 +37,10 @@
     font-size: 20px;
     margin-top: 0;
     padding-left: 10px;
+  }
+
+  & p {
+    font-size: 16px;
   }
 
   &__delete-stuffs {

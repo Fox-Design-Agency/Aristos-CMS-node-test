@@ -24,9 +24,10 @@ const FindOneUserByID = require("../../../../important/admin/adminModels/queries
 module.exports = {
   index(req, res, next) {
     const cats = FindAllDocumentationCategories();
-    const sorted = FindAllRevSortedLogs();
+    const sorted = FindAllSortedLogs();
     const theCount = CountLogs();
     Promise.all([sorted, cats, theCount]).then(result => {
+
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/changelog",
         {
@@ -91,12 +92,12 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/s+/g, "-").toLowerCase();
+        let slug = title.replace(/\s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let keywords = req.body.keywords;
         let description = req.body.description;
-        let author = req.body.author;
+        let author = req.session.passport.user;
 
         if (errors.length > 0) {
           const AllDocumentationCategories = FindAllDocumentationCategories();
@@ -200,12 +201,11 @@ module.exports = {
         }
 
         let title = req.body.title;
-        let slug = title.replace(/s+/g, "-").toLowerCase();
+        let slug = title.replace(/\s+/g, "-").toLowerCase();
         let content = req.body.content;
         let category = req.body.category;
         let id = req.params.id;
         let description = req.body.description;
-        let author = req.body.author;
         let keywords = req.body.keywords;
         if (errors.length > 0) {
           req.flash("error_msg", "Stuff is wrong, fix stuffs.");
@@ -217,8 +217,7 @@ module.exports = {
             content: content,
             category: category,
             description: description,
-            keywords: keywords,
-            author: author
+            keywords: keywords
           };
           EditLogs(id, ProjectParams);
 
