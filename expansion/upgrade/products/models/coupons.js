@@ -1,16 +1,25 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 const Schema = mongoose.Schema;
 
 const CouponSchema = new Schema({
-  name: String,
+  title: {
+    type: String 
+  },
+  description: {
+    type: String
+  },
   discount: Number,
-  categories: {
+  category: {
     type: Schema.Types.ObjectId,
     ref: "ProductCategory"
   },
   author: {
     type: Schema.Types.ObjectId,
     ref: "User"
+  },
+  quantity:{
+    type: Number
   },
   start:{
     type: String,

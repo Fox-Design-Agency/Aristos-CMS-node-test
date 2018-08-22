@@ -9,20 +9,22 @@
   transition: box-shadow 0.3s linear;
   border-radius: 0 50px 0 0;
 
-  &--wide{
+  &--wide {
     width: 600px;
     margin: 20px auto;
   }
 
-  &--medium{
+  &--medium {
     width: 350px;
   }
 
-
   &:hover {
-    box-shadow: 2px 5px 10px black; 
+    box-shadow: 2px 5px 10px black;
     cursor: pointer;
     .admin-blocks__delete-stuffs {
+      visibility: visible;
+    }
+    .admin-blocks__complete-stuffs {
       visibility: visible;
     }
   }
@@ -43,6 +45,28 @@
     font-size: 16px;
   }
 
+  &__complete-stuffs {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    transition: background 0.4s linear;
+    border: 2px solid $colorFive;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      display: flex;
+      cursor: pointer;
+      flex: 1;
+      justify-content: center;
+      background: $hoverSuccess;
+
+      &:hover {
+        background: $transitionSuccessHover;
+        transition: background 0.4s linear;
+      }
+
+  }
+
   &__delete-stuffs {
     visibility: hidden;
     display: flex;
@@ -61,11 +85,9 @@
       background: $hoverDanger;
 
       &:hover {
-       
         background: $transitionDangerHover;
         transition: background 0.4s linear;
       }
     }
   }
 }
-

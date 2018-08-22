@@ -15,8 +15,11 @@ const TaskSchema = new Schema({
     type: String,
     default: moment().format("dddd, MMM Do YYYY")
   },
-  completed: {
+  finished:{
     type: String
+  },
+  completed: {
+    type: Number
   },
   content: {
     type: String,

@@ -62,6 +62,9 @@ const ProductSchema = new Schema({
   allowReviews: {
     type: Boolean,
     default: true
+  },
+  inventory:{
+    type: Number
   }
 });
 const Product = mongoose.model("Product", ProductSchema);
