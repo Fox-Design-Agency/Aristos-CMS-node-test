@@ -22,10 +22,13 @@ module.exports = {
               }
             );
           } else {
-            fs.writeJson(
+            fs.ensureDir(
               "./expansion/upgrade/portfolio-projects/routes/portfolioRoutes.json",
-              {
-                route: "./routes/admin_portfolio_projects.js"
+              err => {
+                fs.writeJson(
+                  "./expansion/upgrade/portfolio-projects/routes/portfolioRoutes.json",
+                  { route: "./routes/admin_portfolio_projects.js" }
+                );
               }
             );
           }

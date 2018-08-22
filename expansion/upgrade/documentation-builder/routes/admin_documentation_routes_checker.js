@@ -4,12 +4,18 @@ module.exports = {
   async theFunction() {
     await pluginChecker.then(plugin => {
       plugin.forEach(theThings => {
-        fs.writeJson(
+        fs.ensureFile(
           "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
-          {
-            route: "./routes/documentation.js"
+          err => {
+            fs.writeJson(
+              "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
+              {
+                route: "./routes/documentation.js"
+              }
+            );
           }
         );
+
         if (theThings.switch === "documentationSwitch") {
           if (theThings.switchRoutes === "true") {
             fs.writeJson(
@@ -19,10 +25,15 @@ module.exports = {
               }
             );
           } else {
-            fs.writeJson(
+            fs.ensureFile(
               "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
-              {
-                route: "./routes/documentation"
+              err => {
+                fs.writeJson(
+                  "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
+                  {
+                    route: "./routes/documentation.js"
+                  }
+                );
               }
             );
           }
