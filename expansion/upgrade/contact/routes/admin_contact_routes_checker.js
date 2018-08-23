@@ -15,7 +15,7 @@ module.exports = {
             );
           }
         );
-        if (theThings.switch === "blogsSwitch") {
+        if (theThings.switch === "contactSwitch") {
           if (theThings.switchRoutes === "true") {
             fs.writeJson(
               "./expansion/upgrade/contact/routes/contactRoutes.json",
