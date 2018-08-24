@@ -23,7 +23,7 @@ let coreUpdate = (req) => {
     }
   );
   addUpdateInfos("some version #", "core update")
-  req.flash("success_msg", "System is updating...");
+  req.flash("success_msg", "System Updated!");
 }; /* end of core update function */
 /*
 * expansion Update Function
@@ -46,13 +46,14 @@ let expansionUpdate = something => {
         something.flash("error_msg", "There was an error with the Update!");
         return addErrorInfos(error, "expansion update error");
       }
+   
       body.forEach(stuff => {
          fs.outputFile(stuff.name, stuff.content);
         // console.log(stuff.name)
       });
     }
   );
-  something.flash("success_msg", "Expansions are updating...");
+  something.flash("success_msg", "Expansions Updated!");
   addUpdateInfos("some version #", "expansion update")
 }; /* end of expansion update function */
 

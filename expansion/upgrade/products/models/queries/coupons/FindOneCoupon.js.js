@@ -3,12 +3,12 @@ const Coupon = require("../../coupons");
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
 /**
- * Finds all coupons that match the stuff param in the Coupon collection.
- * @param {object} stuff - The object of the stuff to search for.
+ * Finds a single coupon in the Coupon collection.
+ * @param {string} _id - The ID of the record to find.
  * @return {promise} A promise that resolves with the coupon that matches the id
  */
-module.exports = stuff => {
-  return Coupon.find(stuff).catch(err => {
+module.exports = _id => {
+  return Coupon.findById(_id).catch(err => {
     errorAddEvent(err, "coupon query error");
   });
 };

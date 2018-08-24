@@ -21,7 +21,7 @@ module.exports = {
             fs.writeJson(
               "./expansion/upgrade/project-management/routes/projectManaRoutes.json",
               {
-                route: `../../plugins/${theThings.folder}/switchRoutes.js`
+                route: `../../plugins/undefined/switchRoutes.js`
               }
             );
           } else {

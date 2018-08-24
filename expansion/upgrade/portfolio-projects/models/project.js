@@ -48,4 +48,3 @@ const ProjectSchema = new Schema({
 
 /* end of project schema functions */
 module.exports = mongoose.model("Project", ProjectSchema);
-

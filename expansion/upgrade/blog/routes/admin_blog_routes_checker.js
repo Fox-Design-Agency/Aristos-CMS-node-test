@@ -15,7 +15,7 @@ module.exports = {
         if (theThings.switch === "blogsSwitch") {
           if (theThings.switchRoutes === "true") {
             fs.writeJson("./expansion/upgrade/blog/routes/blogRoutes.json", {
-              route: `../../plugins/${theThings.folder}/switchRoutes.js`
+              route: `../../plugins/${theThings.folder}/switchRoutes.js `
             });
           } else {
             fs.ensureFile(
