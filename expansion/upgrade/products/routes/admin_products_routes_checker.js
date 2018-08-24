@@ -3,17 +3,14 @@ const pluginChecker = require("../../../plugins");
 module.exports = {
   async theFunction() {
     fs.ensureFile(
-        "./expansion/upgrade/products/routes/productRoutes.json",
-        err => {
-          fs.writeJson(
-            "./expansion/upgrade/products/routes/productRoutes.json",
-            {
-              route: "./routes/admin_products"
-            }
-          );
-        }
-      );
-      await pluginChecker.then(plugin => {
+      "./expansion/upgrade/products/routes/productRoutes.json",
+      err => {
+        fs.writeJson("./expansion/upgrade/products/routes/productRoutes.json", {
+          route: "./routes/admin_products"
+        });
+      }
+    );
+    await pluginChecker.then(plugin => {
       plugin.forEach(theThings => {
         if (theThings.switch === "productsSwitch") {
           if (theThings.switchRoutes === "true") {

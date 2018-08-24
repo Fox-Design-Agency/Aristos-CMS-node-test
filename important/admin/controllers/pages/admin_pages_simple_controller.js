@@ -143,7 +143,7 @@ module.exports = {
         let ids = req.body["id[]"];
         SortPagesByID(ids);
         FindAllSortedPages().then(sortedRes => {
-          req.app.locals.pages = sortedRes;
+          res.app.locals.pages = sortedRes;
           res.redirect("/admin/pages");
         });
       } else {
@@ -186,9 +186,9 @@ module.exports = {
           errors.push({ text: "Please add content." });
         }
         let title = req.body.title;
-        let slug = req.body.slug.replace(/s+/g, "-").toLowerCase();
+        let slug = req.body.slug.replace(/\s+/g, "-").toLowerCase();
         if (slug == "") {
-          slug = title.replace(/s+/g, "-").toLowerCase();
+          slug = title.replace(/\s+/g, "-").toLowerCase();
         }
         let parent = req.body.parent;
         if (parent == "") {

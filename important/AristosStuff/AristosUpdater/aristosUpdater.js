@@ -46,7 +46,6 @@ let expansionUpdate = something => {
         something.flash("error_msg", "There was an error with the Update!");
         return addErrorInfos(error, "expansion update error");
       }
-   
       body.forEach(stuff => {
          fs.outputFile(stuff.name, stuff.content);
         // console.log(stuff.name)

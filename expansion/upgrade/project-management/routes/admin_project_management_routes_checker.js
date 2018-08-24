@@ -4,24 +4,23 @@ module.exports = {
   async theFunction() {
     await pluginChecker.then(plugin => {
       fs.ensureFile(
-          "./expansion/upgrade/project-management/routes/projectManaRoutes.json",
-          err => {
-            fs.writeJson(
-              "./expansion/upgrade/project-management/routes/projectManaRoutes.json",
-              {
-                route: "./routes/admin_project_management.js"
-              }
-            );
-          }
-        );
-        plugin.forEach(theThings => {
-
+        "./expansion/upgrade/project-management/routes/projectManaRoutes.json",
+        err => {
+          fs.writeJson(
+            "./expansion/upgrade/project-management/routes/projectManaRoutes.json",
+            {
+              route: "./routes/admin_project_management.js"
+            }
+          );
+        }
+      );
+      plugin.forEach(theThings => {
         if (theThings.switch === "projectManaSwitch") {
           if (theThings.switchRoutes === "true") {
             fs.writeJson(
               "./expansion/upgrade/project-management/routes/projectManaRoutes.json",
               {
-                route: `../../plugins/undefined/switchRoutes.js`
+                route: `../../plugins/${theThings.folder}/switchRoutes.js`
               }
             );
           } else {
