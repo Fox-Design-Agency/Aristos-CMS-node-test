@@ -3,8 +3,7 @@ const pluginChecker = require("../../../plugins");
 module.exports = {
   async theFunction() {
     await pluginChecker.then(plugin => {
-      plugin.forEach(theThings => {
-        fs.ensureFile(
+      fs.ensureFile(
           "./expansion/upgrade/documentation-builder/routes/documentationRoutes.json",
           err => {
             fs.writeJson(
@@ -15,6 +14,8 @@ module.exports = {
             );
           }
         );
+        plugin.forEach(theThings => {
+        
 
         if (theThings.switch === "documentationSwitch") {
           if (theThings.switchRoutes === "true") {

@@ -2,8 +2,7 @@ const fs = require("fs-extra");
 const pluginChecker = require("../../../plugins");
 module.exports = {
   async theFunction() {
-    await pluginChecker.then(plugin => {
-      fs.ensureFile(
+    fs.ensureFile(
         "./expansion/upgrade/products/routes/productRoutes.json",
         err => {
           fs.writeJson(
@@ -14,7 +13,7 @@ module.exports = {
           );
         }
       );
-
+      await pluginChecker.then(plugin => {
       plugin.forEach(theThings => {
         if (theThings.switch === "productsSwitch") {
           if (theThings.switchRoutes === "true") {

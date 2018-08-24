@@ -3,8 +3,7 @@ const pluginChecker = require("../../../plugins");
 module.exports = {
   async theFunction() {
     await pluginChecker.then(plugin => {
-      plugin.forEach(theThings => {
-        fs.ensureFile(
+     fs.ensureFile(
           "./expansion/upgrade/contact/routes/contactRoutes.json",
           err => {
             fs.writeJson(
@@ -14,7 +13,9 @@ module.exports = {
               }
             );
           }
-        );
+        ); 
+        plugin.forEach(theThings => {
+        
         if (theThings.switch === "contactSwitch") {
           if (theThings.switchRoutes === "true") {
             fs.writeJson(
