@@ -55,6 +55,7 @@ module.exports = {
   }, // end of cat index function
 
   addIndex(req, res, next) {
+  
     const addProduct = fs.readJSONSync(
       "./expansion/upgrade/products/routes/checkers/productRoutes.json"
     ).addView;
@@ -332,8 +333,6 @@ module.exports = {
         for (let i = 0; i < colorIDs.length; i++) {
           colors.push({ name: colorNames[i], fileID: colorIDs[i] });
         }
-        console.log(colors);
-
         if (errors.length > 0) {
           req.flash("error_msg", "errors are present");
           res.redirect("/admin/products/edit-products/" + id);
