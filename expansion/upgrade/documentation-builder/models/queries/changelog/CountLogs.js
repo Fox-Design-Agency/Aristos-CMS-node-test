@@ -3,14 +3,14 @@ const Changelog = require("../../changelog");
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;
 /**
- * Finds all changelogs matchings param in the Changelog collection.
- * @param {object} stuff - An object containing the stuff to search for.
- * @return {promise} A promise that resolves with the changelog thta matches the stuff param
+ * counts the changelogs in the Changelog collection.
+ * @return {promise} A promise that resolves with count of the changelogs
  */
-module.exports = stuff => {
-  return Changelog.find(stuff)
-    .populate("category")
-    .populate("author")
+module.exports = () => {
+  return Changelog.estimatedDocumentCount({})
+    .then(c => {
+      return c;
+    })
     .catch(err => {
       errorAddEvent(err, "changelog query error");
     });
