@@ -1,7 +1,7 @@
 {
   "name": "aristos-node-cms",
   "homepage": "https://foxdesignagency.com/aristos",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "A basic EJS CMS built with love, powered by hardwork, JQuery, Gulp, Webpack, Mocha, Mongo, and Nodejs",
   "main": "index.js",
   "scripts": {

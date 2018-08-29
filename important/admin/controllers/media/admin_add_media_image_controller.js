@@ -65,6 +65,7 @@ module.exports = {
             path: path
           };
           CreateMedia(mediaProps);
+          req.flash("success_msg", "Media added!");
           res.redirect("/admin/add-media");
         });
       } else {

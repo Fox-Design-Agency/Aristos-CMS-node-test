@@ -1,4 +1,8 @@
-const Product = require("../../product");
+const fs = require("fs-extra");
+const Products = fs.readJSONSync(
+  "./expansion/upgrade/products/routes/checkers/productModelRoutes.json"
+).route;
+const Product = require(Products);
 // Aristos Logger Path
 // const Logger = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger").Logger;
 
