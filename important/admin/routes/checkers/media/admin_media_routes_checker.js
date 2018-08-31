@@ -30,7 +30,7 @@ module.exports = {
         }
       });
     });
-    /* default routes path */
+    /* default routes path */ 
     fs.pathExists(
       "./important/admin/routes/checkers/media/MediaRoutes.json",
       (err, exists) => {
