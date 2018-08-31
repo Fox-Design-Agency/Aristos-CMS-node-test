@@ -38,4 +38,3 @@ function sortDocumentationCats(ids, cb) {
     })(count);
   }
 } /* end of sort doc categories function */
-

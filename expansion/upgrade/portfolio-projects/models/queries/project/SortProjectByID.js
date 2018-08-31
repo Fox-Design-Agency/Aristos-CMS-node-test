@@ -42,4 +42,3 @@ function sortProjects(ids, cb) {
     })(count);
   }
 } /* end of sort projects function */
-

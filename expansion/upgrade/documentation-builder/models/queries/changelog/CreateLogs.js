@@ -17,5 +17,3 @@ module.exports = logProps => {
     errorAddEvent(err, "changelog query error");
   });
 };
-
-

@@ -9,4 +9,4 @@ gulp.task("modernizr", ()=>{
         ]
     }))
     .pipe(gulp.dest("./content/public/temp/scripts/"));
-}); /* end of modernizr task */
+}); /* end of modernizr task */ 

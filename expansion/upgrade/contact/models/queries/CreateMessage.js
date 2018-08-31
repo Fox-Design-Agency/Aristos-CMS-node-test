@@ -17,4 +17,3 @@ module.exports = messageProps => {
     errorAddEvent(err, "contact message query error");
   });
 };
-

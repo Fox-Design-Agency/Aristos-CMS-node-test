@@ -17,4 +17,3 @@ module.exports = documentationProps => {
     errorAddEvent(err, "documentation query error");
   });
 };
-

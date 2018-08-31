@@ -15,4 +15,3 @@ module.exports = blogProps => {
   const blog = new Blog(blogProps);
   return blog.save().catch(err => errorAddEvent(err, "blog query error"));
 };
-

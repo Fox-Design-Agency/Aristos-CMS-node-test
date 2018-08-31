@@ -42,4 +42,3 @@ function sortDocumentation(ids, cb) {
     })(count);
   }
 } /* end of sort documentation function */
-
