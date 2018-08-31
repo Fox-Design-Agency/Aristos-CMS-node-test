@@ -38,4 +38,4 @@ function sortBlogs(ids, cb) {
       });
     })(count);
   }
-} /*end of sort pages function */
+} /*end of sort blogs function */
