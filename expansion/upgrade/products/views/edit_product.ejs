@@ -39,7 +39,7 @@
                     <% if(image == "") { %>
                         <img id="noimage" src="/noimage.png" alt="">
                     <% } else { %>
-                        <img id="noimage" class="add-media-preview-image" src="/product_images/<%= id %>/<%= image %>" alt="">
+                        <img id="noimage" class="add-media-preview-image" src="/images//product_images/<%= id %>/<%= image %>" alt="">
                     <% } %>
                     </p>
                 </div>
@@ -82,7 +82,9 @@
             </div>
             <%- include(pluginView) %>
         </div>
-        <button class="admin-button admin-button--submit">Submit</button>
+        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+            <button class="admin-button admin-button--submit">Submit</button>
+        <% } %>
     </form>
     <h3 class="admin-page__sub-title-one" id="gallery">Gallery</h3>
     <ul class="gallery">

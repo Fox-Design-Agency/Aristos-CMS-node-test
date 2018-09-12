@@ -11,16 +11,13 @@
     <br>
 
     <form method="post" action="/admin/changelog-builder/add-log" enctype="multipart/form-data" class="admin-form">
-
         <%- include ../../../../important/AristosStuff/AristosTextEditor/AristosTextEditor %>
             <div class="admin-form__form-options--bottom-group">
                 <div class="admin-form__form-options">
                     <div class="admin-form__group">
                         <label for="">Title</label>
                         <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
-
-                    </div>
-                    
+                    </div> 
                     <div class="admin-form__group">
                         <label for="">Category</label>
                         <select name="category" id="category" class="form-control">
@@ -31,7 +28,6 @@
                                 <% }); %>
                         </select>
                     </div>
-
                 </div>
                 <div class="admin-form__form-options admin-form__form-options--second-group">
                     <div class="admin-form__group">
@@ -44,12 +40,10 @@
                         <textarea class="admin-form--disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat blog, neater topic, neatest person"
                             maxlength="300"><%= keywords %></textarea>
                     </div>
-                   
                 </div>
             </div>
-
-            <button class="admin-button admin-button--submit">Submit</button>
-
+            <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canWrite === "yes") { %>
+                <button class="admin-button admin-button--submit">Submit</button>
+            <% } %>
     </form>
-
-    <%- include("../../../../important/admin/views/_layouts/adminfooter") %>
+ <%- include("../../../../important/admin/views/_layouts/adminfooter") %>

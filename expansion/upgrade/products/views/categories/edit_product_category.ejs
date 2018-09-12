@@ -8,7 +8,6 @@
     </button>
     <br>
     <br>
-
     <form method="post" action="/admin/product-categories/edit-product-category/<%= id %>" class="admin-form">
         <div class="admin-form__form-options--bottom-group">
             <div class="admin-form__form-options">
@@ -25,10 +24,9 @@
                                         <option value="<%= media.path %>">
                                             <%= media.title %>
                                         </option>
-                                        <% } %>
-                                            <% }) %>
+                                    <% } %>
+                                <% }) %>
                             </select>
-    
                     </div>
             </div>
             <div class="admin-form__form-options admin-form__form-options--second-group">
@@ -45,6 +43,9 @@
 
             </div>
         </div>
-        <button class="admin-button admin-button--submit">Submit</button>
+        <%- include(pluginView) %>
+        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit=== "yes") { %>
+            <button class="admin-button admin-button--submit">Submit</button>
+        <% } %>
     </form>
-    <%- include("../../../../../important/admin/views/_layouts/adminfooter") %>
+<%- include("../../../../../important/admin/views/_layouts/adminfooter") %>

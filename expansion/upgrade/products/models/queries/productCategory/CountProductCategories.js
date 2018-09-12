@@ -1,4 +1,8 @@
-const ProductCategory = require("../../productCategory");
+const fs = require("fs-extra");
+const ProductCategories = fs.readJSONSync(
+  "./expansion/upgrade/products/routes/checkers/productCategoryModelRoutes.json"
+).route;
+const ProductCategory = require(ProductCategories);
 /* Aristos Logger Path */
 const errorAddEvent = require("../../../../../../important/AristosStuff/AristosLogger/AristosLogger")
   .addError;

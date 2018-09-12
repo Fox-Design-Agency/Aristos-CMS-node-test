@@ -24,18 +24,21 @@ const FindAllMedia = require("../../../../important/admin/adminModels/queries/me
 
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 
 module.exports = {
   index(req, res, next) {
     Promise.all([
       CountProducts(),
       FindAllSortedProducts(),
-      FindAllProductCategories()
+      FindAllProductCategories(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render("../../../expansion/upgrade/products/views/products", {
         products: result[1],
         categories: result[2],
-        count: result[0]
+        count: result[0],
+        theUser: result[3]
       });
     });
   } /* end of index function */,
@@ -44,12 +47,14 @@ module.exports = {
     Promise.all([
       CountProducts(),
       FindSortedByParam({ category: req.params.category }),
-      FindAllProductCategories()
+      FindAllProductCategories(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render("../../../expansion/upgrade/products/views/products", {
         products: result[1],
         categories: result[2],
-        count: result[0]
+        count: result[0],
+        theUser: result[3]
       });
     });
   } /* end of cat index function */,
@@ -66,7 +71,11 @@ module.exports = {
       inventory,
       sku = "";
 
-    Promise.all([FindAllProductCategories(), FindAllMedia()]).then(result => {
+    Promise.all([
+      FindAllProductCategories(),
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render("../../../expansion/upgrade/products/views/add_product", {
         title: title,
         content: content,
@@ -77,7 +86,8 @@ module.exports = {
         keywords: keywords,
         inventory: inventory,
         sku: sku,
-        pluginView: addProduct
+        pluginView: addProduct,
+        theUser: result[2]
       });
     });
   } /* end of add index function */,
@@ -240,7 +250,8 @@ module.exports = {
     Promise.all([
       FindAllProductCategories(),
       FindOneProductByID(req.params.id),
-      FindAllMedia()
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       let galleryDir =
         "content/public/images/product_images/" + result[1]._id + "/gallery";
@@ -265,7 +276,8 @@ module.exports = {
             sku: result[1].printfile,
             inventory: result[1].inventory,
             allowReviews: result[1].allowReviews,
-            pluginView: editProduct
+            pluginView: editProduct,
+            theUser: result[3]
           });
         }
       });

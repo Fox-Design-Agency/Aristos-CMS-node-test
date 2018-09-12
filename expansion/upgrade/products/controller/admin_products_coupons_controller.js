@@ -14,12 +14,18 @@ const GetAllProductCats = require("../models/queries/productCategory/FindAllProd
 const FindAllMedia = require("../../../../important/admin/adminModels/queries/media/FindAllMedia");
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 module.exports = {
   index(req, res, next) {
-    Promise.all([CountCoupons(), FindAllCoupons()]).then(result => {
+    Promise.all([
+      CountCoupons(),
+      FindAllCoupons(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render("../../../expansion/upgrade/products/views/coupons/coupons", {
         count: result[0],
-        coupons: result[1]
+        coupons: result[1],
+        theUser: result[2]
       });
     });
   } /* end of index function */,
@@ -30,7 +36,11 @@ module.exports = {
       keywords = "";
     let quantity = -1;
 
-    Promise.all([FindAllMedia(), GetAllProductCats()]).then(result => {
+    Promise.all([
+      FindAllMedia(),
+      GetAllProductCats(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/products/views/coupons/add_coupons",
         {
@@ -40,11 +50,12 @@ module.exports = {
           keywords: keywords,
           quantity: quantity,
           media: result[0],
-          categories: result[1]
+          categories: result[1],
+          theUser: result[2]
         }
       );
     });
-  }, /* end of add index function */
+  } /* end of add index function */,
   create(req, res, next) {
     const User = FindOneUserByID(req.session.passport.user);
     User.then(user => {
@@ -112,25 +123,28 @@ module.exports = {
         res.redirect("/users/login");
       }
     });
-  }, /* end of create function */
+  } /* end of create function */,
   editIndex(req, res, next) {
-    Promise.all([FindOneCouponsByID(req.params.id), FindAllMedia()]).then(
-      result => {
-        res.render(
-          "../../../expansion/upgrade/products/views/categories/edit_product_category",
-          {
-            title: result[0].title,
-            id: result[0]._id,
-            author: result[0].author,
-            description: result[0].description,
-            keywords: result[0].keywords,
-            media: result[1],
-            imagepath: result[0].imagepath
-          }
-        );
-      }
-    );
-  }, /* end of edit index function */
+    Promise.all([
+      FindOneCouponsByID(req.params.id),
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
+      res.render(
+        "../../../expansion/upgrade/products/views/categories/edit_product_category",
+        {
+          title: result[0].title,
+          id: result[0]._id,
+          author: result[0].author,
+          description: result[0].description,
+          keywords: result[0].keywords,
+          media: result[1],
+          imagepath: result[0].imagepath,
+          theUSer: result[2]
+        }
+      );
+    });
+  } /* end of edit index function */,
   edit(req, res, next) {
     /* not working */
     const User = FindOneUserByID(req.session.passport.user);
@@ -203,7 +217,7 @@ module.exports = {
         res.redirect("/users/login");
       }
     });
-  }, /* end of edit function */
+  } /* end of edit function */,
   delete(req, res, next) {
     DeleteCoupon(req.params.id);
     req.flash("success_msg", "Coupon deleted!");

@@ -56,6 +56,19 @@ module.exports = {
           }
         }
       );
+      fs.pathExists(
+        "./expansion/upgrade/documentation-builder/routes/checkers/documentationCategoriesRoutes.json",
+        (err, exists) => {
+          if (!exists) {
+            fs.writeJson(
+              "./expansion/upgrade/documentation-builder/routes/checkers/documentationCategoriesRoutes.json",
+              {
+                route: "./routes/documentation_categories.js"
+              }
+            );
+          }
+        }
+      );
       /* end of default documentation routes */
       /* default documentation Model routes */
       fs.pathExists(
@@ -79,6 +92,19 @@ module.exports = {
               "./expansion/upgrade/documentation-builder/routes/checkers/documentationModelRoutes.json",
               {
                 route: "../../documentation.js"
+              }
+            );
+          }
+        }
+      );
+      fs.pathExists(
+        "./expansion/upgrade/documentation-builder/routes/checkers/documentationCategoriesModelRoutes.json",
+        (err, exists) => {
+          if (!exists) {
+            fs.writeJson(
+              "./expansion/upgrade/documentation-builder/routes/checkers/documentationCategoriesModelRoutes.json",
+              {
+                route: "../../documentationCategory.js"
               }
             );
           }

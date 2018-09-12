@@ -1,25 +1,25 @@
 <div class="admin-form__form-options admin-form__form-options--second-group">
-<div id="printful-section">
-    <div class="form-group-row">
-        <div class="form-group">
-            <label for="">Print File</label>
-            <input type="text" class="form-control" name="printfile" placeholder="Print file">
+    <div id="printful-section">
+        <div class="form-group-row">
+            <div class="form-group">
+                <label for="">Print File</label>
+                <input type="text" class="form-control" name="printfile" placeholder="Print file">
+            </div>
+            <div class="form-group">
+                <label for="">Product</label>
+                <select id="productselector">
+                    <option value=""></option>
+                    <option value="raglan">Raglan</option>
+                    <option value="t-shirt">T-Shirt</option>
+                    <option value="leggings">Leggings</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="">Product</label>
-            <select id="productselector">
-                <option value=""></option>
-                <option value="raglan">Raglan</option>
-                <option value="t-shirt">T-Shirt</option>
-                <option value="leggings">Leggings</option>
-            </select>
+        <div id="type-holder" class="size-holder">
+        </div>
+        <div id="color-size-holder">
         </div>
     </div>
-    <div id="type-holder" class="size-holder">
-    </div>
-    <div id="color-size-holder">
-    </div>
-</div>
 </div>
 <script>
     $("#printful-section").on("click", function (e) {

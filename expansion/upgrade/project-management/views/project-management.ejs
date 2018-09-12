@@ -1,97 +1,106 @@
 <% include ../../../../important/admin/views/_layouts/adminheader %>
     <h2 class="admin-page__main-title">Project Management</h2>
     <% include ../../../../important/admin/views/_layouts/messages/messages %>
-    <button class="admin-button admin-button--add-something">
+    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canWrite === "yes") { %>
+        <button class="admin-button admin-button--add-something">
             <a href="/admin/project-management/add-task">+</a>
         </button>
-        <br>
-        <br> 
+    <% } %>
+    <br>
+    <br> 
     <% if (count < 1){ %>
         <h3 class="admin-page__none-of-something">There are no tasks right now...</h3>
     <% } else { %>
-    <h6 class="admin-page__sub-title-one" id="active-tasks">Active Tasks</h6>
-   
-    <div class="blocks-holder">
-        <% tasks.forEach(task=>{ %>
-            <% if(task.completed !== 1){ %>
-            <div class="admin-blocks admin-blocks--wide" id="id_<%= task._id %>" class="<%= task.slug %>">
-            <a href="/admin/project-management/edit-task/<%= task._id %>">
-                <h4>
-                    title:
-                </h4>
-                <h5>
-                    <%= task.title %>
-                </h5>
-                <h4>
-                    assigned:
-                </h4>
-                <h5>
-                    <%= task.assigned.username %>
-                </h5>
-                <h4>
-                    created:
-                </h4>
-                <h5>
-                    <%= task.published %>
-                </h5>
-                <h4>
-                    content:
-                </h4>
-                <h5>
-                    <%= task.content %>
-                </h5>
-                <a href="/admin/project-management/complete-task/<%= task._id %>" class="admin-blocks__complete-stuffs">Complete</a>
-                </a>
-            </div>
-            <% } %>
-        <% }) %>
-    </div>
-   
-    <h6 class="admin-page__sub-title-one">Completed Tasks</h6>
-    <div class="blocks-holder">
-    <% tasks.forEach(task=>{ %>
-    <% if(task.completed === 1){ %>
-    <div class="admin-blocks" id="id_<%= task._id %>" class="<%= task.slug %>">
-    <a href="/admin/project-management/edit-task/<%= task._id %>">
-        <h4>
-            title:
-        </h4>
-        <h5>
-            <%= task.title %>
-        </h5>
-        <h4>
-            assigned:
-        </h4>
-        <h5>
-            <%= task.assigned.username %>
-        </h5>
-        <h4>
-            created:
-        </h4>
-        <h5>
-            <%= task.published %>
-        </h5>
-        <h4>
-            completed:
-        </h4>
-        <h5>
-            <%= task.finished %>
-        </h5>
-        <h4>
-            content:
-        </h4>
-        <h5>
-            <%= task.content %>
-        </h5>
-        <form class="admin-blocks__delete-stuffs" method="post" action="/admin/project-management/delete-task/<%= task._id %>?_method=DELETE">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">Delete</button>
-        </form>
-        </a>
-    </div>
+        <h6 class="admin-page__sub-title-one" id="active-tasks">Active Tasks</h6>
+        <div class="blocks-holder">
+            <% tasks.forEach(task=>{ %>
+                <% if(task.completed !== 1){ %>
+                <div class="admin-blocks admin-blocks--wide" id="id_<%= task._id %>" class="<%= task.slug %>">
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                        <a href="/admin/project-management/edit-task/<%= task._id %>">
+                    <% } %>
+                    <h4>
+                        title:
+                    </h4>
+                    <h5>
+                        <%= task.title %>
+                    </h5>
+                    <h4>
+                        assigned:
+                    </h4>
+                    <h5>
+                        <%= task.assigned.username %>
+                    </h5>
+                    <h4>
+                        created:
+                    </h4>
+                    <h5>
+                        <%= task.published %>
+                    </h5>
+                    <h4>
+                        content:
+                    </h4>
+                    <h5>
+                        <%= task.content %>
+                    </h5>
+                    <a href="/admin/project-management/complete-task/<%= task._id %>" class="admin-blocks__complete-stuffs">Complete</a>
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                        </a>
+                    <% } %>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+        <h6 class="admin-page__sub-title-one">Completed Tasks</h6>
+        <div class="blocks-holder">
+            <% tasks.forEach(task=>{ %>
+                <% if(task.completed === 1){ %>
+                    <div class="admin-blocks" id="id_<%= task._id %>" class="<%= task.slug %>">
+                        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                            <a href="/admin/project-management/edit-task/<%= task._id %>">
+                        <% } %>
+                        <h4>
+                            title:
+                        </h4>
+                        <h5>
+                            <%= task.title %>
+                        </h5>
+                        <h4>
+                            assigned:
+                        </h4>
+                        <h5>
+                            <%= task.assigned.username %>
+                        </h5>
+                        <h4>
+                            created:
+                        </h4>
+                        <h5>
+                            <%= task.published %>
+                        </h5>
+                        <h4>
+                            completed:
+                        </h4>
+                        <h5>
+                            <%= task.finished %>
+                        </h5>
+                        <h4>
+                            content:
+                        </h4>
+                        <h5>
+                            <%= task.content %>
+                        </h5>
+                        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canRemove === "yes") { %>
+                            <form class="admin-blocks__delete-stuffs" method="post" action="/admin/project-management/delete-task/<%= task._id %>?_method=DELETE">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% } %>
+                        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                            </a>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% }) %>
+        </div>
     <% } %>
-    <% }) %>
-</div>
-   
-    <% } %>
-    <% include ../../../../important/admin/views/_layouts/adminfooter %>
+<% include ../../../../important/admin/views/_layouts/adminfooter %>

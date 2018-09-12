@@ -1,11 +1,16 @@
 <%- include("../../../../important/admin/views/_layouts/adminheader") %>
     <h2 class="admin-page__main-title">Products</h2>
     <% include ../../../../important/admin/views/_layouts/messages/messages %>
-        <button class="admin-button admin-button--add-something">
+    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canWrite === "yes") { %>
+        <button class="admin-button admin-button--add-something admin-button--add-something--second">
             <a href="/admin/products/add-product">+</a>
         </button>
-        <br>
-        <br>
+    <% } %>
+    <button class="admin-button admin-button--add-something">
+        <a href="/admin/products/stats"><i class="far fa-file"></i></a>
+    </button>
+    <br>
+    <br>
     <% if (count > 0) { %>
         <div class="button-row">
             <button class="admin-button admin-button--main">
@@ -22,38 +27,44 @@
         <div class="blocks-holder">
             <% products.forEach(function(product) { %>
                 <div class="admin-blocks" id="id_<%= product._id %>" class="<%= product.slug %>">
-                    <a href="/admin/products/edit-product/<%= product._id %>">
-                        <h4>
-                            title:
-                        </h4>
-                        <h5>
-                            <%= product.title %>
-                        </h5>
-                        <h4>
-                            price:
-                        </h4>
-                        <h5>
-                            $<%= parseFloat(product.price).toFixed(2) %>
-                        </h5>
-                        <h4>
-                            category:
-                        </h4>
-                        <h5>
-                            <%= product.category.title %>
-                        </h5>
-                        <h4>
-                            image:
-                        </h4>
-                        <% if (product.image == "") { %>
-                            <img class="admin-table__image-preview" id="noimage" src="/noimage.png" alt="">
-                        <% } else { %>
-                            <img class="admin-table__image-preview" id="noimage" src="/product_images/<%= product.id%>/<%= product.image %>" alt="">
-                        <% } %>
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                        <a href="/admin/products/edit-product/<%= product._id %>">
+                    <% } %>
+                    <h4>
+                        title:
+                    </h4>
+                    <h5>
+                        <%= product.title %>
+                    </h5>
+                    <h4>
+                        price:
+                    </h4>
+                    <h5>
+                        $<%= parseFloat(product.price).toFixed(2) %>
+                    </h5>
+                    <h4>
+                        category:
+                    </h4>
+                    <h5>
+                        <%= product.category.title %>
+                    </h5>
+                    <h4>
+                        image:
+                    </h4>
+                    <% if (product.image == "") { %>
+                        <img class="admin-table__image-preview" id="noimage" src="/noimage.png" alt="">
+                    <% } else { %>
+                        <img class="admin-table__image-preview" id="noimage" src="/images/product_images/<%= product.id%>/<%= product.image %>" alt="">
+                    <% } %>
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canRemove === "yes") { %>
                         <form class="admin-blocks__delete-stuffs"  method="post" action="/admin/products/delete-product/<%= product._id %>?_method=DELETE">
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit">Delete</button>
                         </form>
-                    </a>
+                    <% } %>
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                        </a>
+                    <% } %>
                 </div>
             <% }); %>
         </div>

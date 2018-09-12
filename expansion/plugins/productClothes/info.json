@@ -1,0 +1,12 @@
+{
+  "name": "productClothes",
+  "folder": "productClothes",
+  "variable": "productClothesExists",
+  "switch": "productsSwitch",
+  "switchRoutes": "true",
+  "modelSwitch": "true",
+  "categoriesSwitch": "true",
+  "modelRoutes": ["product", "productCategory"],
+  "link": "",
+  "dropdownCategories": []
+}

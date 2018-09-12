@@ -9,24 +9,34 @@ const DeleteOrder = require("../models/queries/orders/DeleteOrder");
 const FindAllMedia = require("../../../../important/admin/adminModels/queries/media/FindAllMedia");
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 module.exports = {
   index(req, res, next) {
-    Promise.all([CountOrders(), GetAllOrders()]).then(result => {
+    Promise.all([
+      CountOrders(),
+      GetAllOrders(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/products/views/orders/active_orders",
         {
           orders: result[1],
-          count: result[0]
+          count: result[0],
+          theUser: result[2]
         }
       );
     });
   } /* end of index function */,
   seeOne(req, res, next) {
-    GetOneOrderByID(req.params.id).then(order => {
+    Promise.all([
+      GetOneOrderByID(req.params.id),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/products/views/orders/view_order",
         {
-          order: order
+          order: result[0],
+          theUser: result[1]
         }
       );
     });

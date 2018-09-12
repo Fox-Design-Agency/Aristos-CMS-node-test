@@ -22,21 +22,23 @@ const DeleteChangelogsWithCategory = require("../models/queries/changelog/Delete
 
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 module.exports = {
   index(req, res, next) {
-    const countDocumentationCategories = CountDocumentationCategories();
-    const SortedCategories = FindAllSortedDocumentationCategories();
-    Promise.all([countDocumentationCategories, SortedCategories]).then(
-      result => {
-        res.render(
-          "../../../expansion/upgrade/documentation-builder/views/categories/documentation_categories",
-          {
-            categories: result[1],
-            count: result[0]
-          }
-        );
-      }
-    );
+    Promise.all([
+      CountDocumentationCategories(),
+      FindAllSortedDocumentationCategories(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
+      res.render(
+        "../../../expansion/upgrade/documentation-builder/views/categories/documentation_categories",
+        {
+          categories: result[1],
+          count: result[0],
+          theUser: result[2]
+        }
+      );
+    });
   } /* end of index function */,
 
   addIndex(req, res, next) {
@@ -44,7 +46,10 @@ module.exports = {
       author,
       description,
       keywords = "";
-    FindAllMedia().then(media => {
+    Promise.all([
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/categories/add_documentation_category",
         {
@@ -52,7 +57,8 @@ module.exports = {
           author: author,
           description: description,
           keywords: keywords,
-          media: media
+          media: result[0],
+          theUser: result[1]
         }
       );
     });
@@ -128,9 +134,11 @@ module.exports = {
   } /* end of create function */,
 
   editIndex(req, res, next) {
-    const documentationCategory = FindDocumentationCategoryByID(req.params.id);
-    const AllMedia = FindAllMedia();
-    Promise.all([documentationCategory, AllMedia]).then(result => {
+    Promise.all([
+      FindDocumentationCategoryByID(req.params.id),
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/categories/edit_documentation_category",
         {
@@ -138,7 +146,8 @@ module.exports = {
           id: result[0]._id,
           description: result[0].description,
           keywords: result[0].keywords,
-          media: result[1]
+          media: result[1],
+          theUser: result[2]
         }
       );
     });

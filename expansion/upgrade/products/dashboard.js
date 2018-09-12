@@ -14,7 +14,7 @@ module.exports = {
     });
     return `
     <div class="admin-blocks">
-    <a href="/admin/products">
+    <a href="/admin/products/stats">
         <h5>
             ${name}
         </h5>

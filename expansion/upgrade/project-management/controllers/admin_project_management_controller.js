@@ -13,16 +13,17 @@ const FindAllMedia = require("../../../../important/admin/adminModels/queries/me
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
 const FindUserByParams = require("../../../../important/admin/adminModels/queries/user/FindUserWithParam");
-
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 module.exports = {
   index(req, res, next) {
-    Promise.all([FindAllTasks(), CountTasks()]).then(result => {
+    Promise.all([FindAllTasks(), CountTasks(), FindOneAdminByID(req.session.passport.user)]).then(result => {
       res.render(
         "../../../expansion/upgrade/project-management/views/project-management",
         {
           content: "",
           tasks: result[0],
-          count: result[1]
+          count: result[1],
+          theUser: result[2]
         }
       );
     });
@@ -33,7 +34,7 @@ module.exports = {
       content,
       assigned = "";
     let completed = 0;
-    Promise.all([FindUserByParams({ admin: 1 }), FindAllMedia()]).then(
+    Promise.all([FindUserByParams({ admin: 1 }), FindAllMedia(), FindOneAdminByID(req.session.passport.user)]).then(
       result => {
         res.render(
           "../../../expansion/upgrade/project-management/views/tasks/add_task",
@@ -44,7 +45,8 @@ module.exports = {
             assigned: assigned,
             completed: completed,
             user: result[0],
-            media: result[1]
+            media: result[1],
+            theUser: result[2]
           }
         );
       }
@@ -105,7 +107,8 @@ module.exports = {
     Promise.all([
       FindUserByParams({ admin: 1 }),
       FindOneTaskByID(req.params.id),
-      FindAllMedia()
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render(
         "../../../expansion/upgrade/project-management/views/tasks/edit_task",
@@ -116,7 +119,8 @@ module.exports = {
           content: result[1].content,
           user: result[0],
           id: result[1]._id,
-          media: result[2]
+          media: result[2],
+          theUser: result[3]
         }
       );
     });

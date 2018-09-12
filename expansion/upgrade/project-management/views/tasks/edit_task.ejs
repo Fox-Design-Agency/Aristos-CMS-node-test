@@ -30,7 +30,9 @@
                 </select>
             </div>
         </div>  
-        <button class="admin-button admin-button--submit">Submit</button>     
+        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+            <button class="admin-button admin-button--submit">Submit</button>     
+        <% } %>
     </form>
     <form method="post" action="/admin/project-management/delete-task/<%= id %>?_method=DELETE">
         <input type="hidden" name="_method" value="DELETE">

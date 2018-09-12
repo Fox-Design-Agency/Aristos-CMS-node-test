@@ -39,23 +39,6 @@ const ProductSchema = new Schema({
   sorting: {
     type: Number
   },
-  color: [
-    {
-      name: String,
-      fileID:String
-    }
-  ],
-  sizes: [
-    {
-      type: String
-    }
-  ],
-  printfile: {
-    type: String
-  },
-  productType: {
-    type: String
-  },
   status: {
     type: String,
     default: "public"

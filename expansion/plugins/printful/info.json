@@ -2,8 +2,10 @@
   "name": "printful",
   "folder": "printful",
   "variable": "printfulExists",
-  "switch": "productsSwitch",
+  "switch": "",
   "switchRoutes": "true",
+  "modelSwitch": "true",
+  "modelRoutes": ["product"],
   "link": "",
   "dropdownCategories": []
 }

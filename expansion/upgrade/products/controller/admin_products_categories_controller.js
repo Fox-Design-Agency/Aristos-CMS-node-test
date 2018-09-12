@@ -16,19 +16,23 @@ const FindAllMedia = require("../../../../important/admin/adminModels/queries/me
 // const FindAllMediaCategories = require("../../../../important/adminModels/queries/mediaCategories/FindAllMediaCategories");
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 module.exports = {
   index(req, res, next) {
-    Promise.all([CountProductCategory(), FindAllSortedCategories()]).then(
-      result => {
-        res.render(
-          "../../../expansion/upgrade/products/views/categories/product_categories",
-          {
-            categories: result[1],
-            count: result[0]
-          }
-        );
-      }
-    );
+    Promise.all([
+      CountProductCategory(),
+      FindAllSortedCategories(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
+      res.render(
+        "../../../expansion/upgrade/products/views/categories/product_categories",
+        {
+          categories: result[1],
+          count: result[0],
+          theUser: result[2]
+        }
+      );
+    });
   } /* end of index function */,
   addIndex(req, res, next) {
     let title,
@@ -36,7 +40,10 @@ module.exports = {
       description,
       keywords,
       imagePath = "";
-    FindAllMedia().then(media => {
+    Promise.all([
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
       res.render(
         "../../../expansion/upgrade/products/views/categories/add_product_category",
         {
@@ -45,7 +52,8 @@ module.exports = {
           description: description,
           keywords: keywords,
           imagePath: imagePath,
-          media: media
+          media: result[0],
+          theUser: result[1]
         }
       );
     });
@@ -119,7 +127,8 @@ module.exports = {
   editIndex(req, res, next) {
     Promise.all([
       FindOneProductCategoryByID(req.params.id),
-      FindAllMedia()
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render(
         "../../../expansion/upgrade/products/views/categories/edit_product_category",
@@ -130,7 +139,8 @@ module.exports = {
           description: result[0].description,
           keywords: result[0].keywords,
           media: result[1],
-          imagepath: result[0].imagepath
+          imagepath: result[0].imagepath,
+          theUser: result[2]
         }
       );
     });

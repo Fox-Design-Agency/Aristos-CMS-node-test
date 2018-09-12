@@ -1,45 +1,49 @@
 <%- include("../../../../important/admin/views/_layouts/adminheader") %>
     <h2 class="admin-page__main-title">changelog builder</h2>
     <% include ../../../../important/admin/views/_layouts/messages/messages %>
+    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canWritee === "yes") { %>
         <button class="admin-button admin-button--add-something">
             <a  href="/admin/changelog-builder/add-log">+</a>
         </button>
-        <br>
-        <br>
-        <% if(count < 1){ %>
-        <h3 class="admin-page__none-of-something">There are no logs right now...</h3>
-        <% } else { %>
+    <% } %>
+    <br>
+    <br>
+    <% if(count < 1){ %>
+    <h3 class="admin-page__none-of-something">There are no logs right now...</h3>
+    <% } else { %>
         <div class="button-row">
             <button class="admin-button admin-button--main">
                 <a href="/admin/changelog-builder/">All Categories</a>
             </button>
-    <% categories.forEach(function(category){ %>
-        <button  class="admin-button admin-button--main">
-            <a href="/admin/changelog-builder/sorted/<%= category._id %>">
-                <%= category.title %>
-            </a>
-        </button>
-    <% }) %> 
-    </div>
-    <div class="blocks-holder">
+            <% categories.forEach(function(category){ %>
+                <button  class="admin-button admin-button--main">
+                    <a href="/admin/changelog-builder/sorted/<%= category._id %>">
+                        <%= category.title %>
+                    </a>
+                </button>
+            <% }) %> 
+        </div>
+        <div class="blocks-holder">
             <% projects.forEach(function(project){ %>
-            <div class="admin-blocks" id="id_<%= project._id %>" class="<%= project.slug %>">
-            <a href="/admin/changelog-builder/edit-log/<%= project._id %>">
-            <h4>
-                title:
-            </h4>
+                <div class="admin-blocks" id="id_<%= project._id %>" class="<%= project.slug %>">
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit === "yes") { %>
+                        <a href="/admin/changelog-builder/edit-log/<%= project._id %>">
+                    <% } %>
+                    <h4>
+                        title:
+                    </h4>
                     <h5>
                         <%= project.title %>
                     </h5>
                     <h4>
-                category:
-            </h4>
+                        category:
+                    </h4>
                     <h5>
                         <%= project.category.title %>
                     </h5>
                     <h4>
-                published:
-            </h4>
+                        published:
+                    </h4>
                     <h5>
                         <%= project.published %>
                     </h5>
@@ -49,14 +53,17 @@
                     <h5>
                         <%= project.description %>
                     </h5>
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canRemove === "yes") { %>
                     <form class="admin-blocks__delete-stuffs" method="post" action="/admin/changelog-builder/delete-log/<%= project._id %>?_method=DELETE">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit">Delete</button>
-                            </form>
-                            </a>
-               </div>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                    <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canEdit=== "yes") { %>
+                        </a>
+                    <% } %>
+                </div>
             <% }) %>
-
         </div>
     <% } %>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -70,5 +77,4 @@
             }
         }, "refresh");
     </script>
-
-    <%- include("../../../../important/admin/views/_layouts/adminfooter") %>
+<%- include("../../../../important/admin/views/_layouts/adminfooter") %>

@@ -11,62 +11,64 @@
 
     <form method="post" action="/admin/products/add-product" enctype="multipart/form-data" class="admin-form">
         <%- include ../../../../important/AristosStuff/AristosTextEditor/AristosTextEditor %>
-            <div class="admin-form__form-options--bottom-group">
-                <div class="admin-form__form-options">
-                    <div class="admin-form__group">
-                        <label for="">Title</label>
-                        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
-                    </div>
-                    <div class="admin-form__group">
-                        <label for="">Price</label>
-                        <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
-                    </div>
-                    <div class="admin-form__group">
-                        <label for="">Category</label>
-                        <select name="category" id="category" class="form-control">
-                            <% categories.forEach(function(category){ %>
-                                <option value="<%= category._id %>">
-                                    <%= category.title %>
-                                </option>
-                            <% }); %>
-                        </select>
-                    </div>
-                    <div class="admin-form__group">
-                        <label for="">Image</label>
-                        <input type="file" class="form-control" name="image" id="img">
-                        <img src="#" id="imgPreview" alt="">
-                    </div>
+        <div class="admin-form__form-options--bottom-group">
+            <div class="admin-form__form-options">
+                <div class="admin-form__group">
+                    <label for="">Title</label>
+                    <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
                 </div>
-                <div class="admin-form__form-options admin-form__form-options--second-group">
-                    <div class="admin-form__group">
-                        <label for="">Meta Description</label>
-                        <textarea class="admin-form--disabled-resize" rows="4" name="description" placeholder="Place a brief description of this blog. Max of 320 characters including spaces." maxlength="320"></textarea>
-                    </div>
-                    <div class="admin-form__group">
-                        <label for="">Meta Keywords</label>
-                        <textarea class="admin-form--disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat blog, neater topic, neatest person"
-                            maxlength="300"></textarea>
-                    </div>
+                <div class="admin-form__group">
+                    <label for="">Price</label>
+                    <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
+                </div>
+                <div class="admin-form__group">
+                    <label for="">Category</label>
+                    <select name="category" id="category" class="form-control">
+                        <% categories.forEach(function(category){ %>
+                            <option value="<%= category._id %>">
+                                <%= category.title %>
+                            </option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="admin-form__group">
+                    <label for="">Image</label>
+                    <input type="file" class="form-control" name="image" id="img">
+                    <img src="#" id="imgPreview" alt="">
                 </div>
             </div>
-            <div class="admin-form__form-options--bottom-group">
-                <div class="admin-form__form-options">
-                    <div class="admin-form__group">
-                        <label for="">Inventory</label>
-                        <input type="number" class="form-control" name="inventory" value="<%= inventory %>" min="-1" placeholder="Inventory amount, -1 = unlimited">
-                    </div>
-                    <div class="admin-form__group">
-                        <label for="">SKU</label>
-                        <input type="text" class="form-control" name="sku" value="<%= sku %>" placeholder="optional sku">
-                    </div>
-                    <div class="admin-form__group">
-                        <label for="">Allow Reviews</label>
-                        <input type="checkbox" class="form-control" name="allowReviews" >
-                    </div>
+            <div class="admin-form__form-options admin-form__form-options--second-group">
+                <div class="admin-form__group">
+                    <label for="">Meta Description</label>
+                    <textarea class="admin-form--disabled-resize" rows="4" name="description" placeholder="Place a brief description of this blog. Max of 320 characters including spaces." maxlength="320"></textarea>
                 </div>
-                <%- include(pluginView) %>
+                <div class="admin-form__group">
+                    <label for="">Meta Keywords</label>
+                    <textarea class="admin-form--disabled-resize" rows="4" name="keywords" placeholder="Place your keywords seperated by a comma. Max of 300 characters. EX. neat blog, neater topic, neatest person"
+                        maxlength="300"></textarea>
+                </div>
             </div>
-        <button class="admin-button admin-button--submit">Submit</button>   
+        </div>
+        <div class="admin-form__form-options--bottom-group">
+            <div class="admin-form__form-options">
+                <div class="admin-form__group">
+                    <label for="">Inventory</label>
+                    <input type="number" class="form-control" name="inventory" value="<%= inventory %>" min="-1" placeholder="Inventory amount, -1 = unlimited">
+                </div>
+                <div class="admin-form__group">
+                    <label for="">SKU</label>
+                    <input type="text" class="form-control" name="sku" value="<%= sku %>" placeholder="optional sku">
+                </div>
+                <div class="admin-form__group">
+                    <label for="">Allow Reviews</label>
+                    <input type="checkbox" class="form-control" name="allowReviews" >
+                </div>
+            </div>
+            <%- include(pluginView) %>
+        </div>
+        <% if(theUser.userRole.allTheThings === "yes" || theUser.userRole.canWrite === "yes") { %>
+            <button class="admin-button admin-button--submit">Submit</button>
+        <% } %>
     </form>
     <script>
         function readURL(input) {

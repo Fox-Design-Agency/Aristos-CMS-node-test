@@ -1,1 +1,1 @@
-{"route":"../../plugins/printful/routes/products/admin_products.js","addView":"../../../plugins/printful/viewAdds/products/productsAdd","editView":"../../../plugins/printful/viewAdds/products/productsEdit"}
+{"route":"../../plugins/productClothes/routes/products/admin_products.js","addView":"../../../plugins/productClothes/viewAdds/products/productsAdd","editView":"../../../plugins/productClothes/viewAdds/products/productsEdit"}

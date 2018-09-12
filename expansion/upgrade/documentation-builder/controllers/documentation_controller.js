@@ -20,19 +20,22 @@ const FindAllMedia = require("../../../../important/admin/adminModels/queries/me
 const FindAllDocumentationCategories = require("../models/queries/documentationCategories/FindAllDocumentationCategories");
 /* User Model Queries */
 const FindOneUserByID = require("../../../../important/admin/adminModels/queries/user/FindOneUserWithID");
+const FindOneAdminByID = require("../../../../important/admin/adminModels/queries/user/FindAdminUserByID");
 module.exports = {
   index(req, res, next) {
     Promise.all([
       FindAllSortedDocumentation(),
       FindAllDocumentationCategories(),
-      CountDocumentation()
+      CountDocumentation(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/documentation",
         {
           projects: result[0],
           categories: result[1],
-          count: result[2]
+          count: result[2],
+          theUser: result[3]
         }
       );
     });
@@ -43,14 +46,16 @@ module.exports = {
         category: req.params.category
       }),
       FindAllDocumentationCategories(),
-      CountDocumentation()
+      CountDocumentation(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/documentation",
         {
           projects: result[0],
           categories: result[1],
-          count: result[2]
+          count: result[2],
+          theUser: result[3]
         }
       );
     });
@@ -61,22 +66,25 @@ module.exports = {
       price,
       keywords,
       description = "";
-    Promise.all([FindAllDocumentationCategories(), FindAllMedia()]).then(
-      result => {
-        res.render(
-          "../../../expansion/upgrade/documentation-builder/views/add_documentation",
-          {
-            title: title,
-            content: content,
-            categories: result[0],
-            price: price,
-            media: result[1],
-            description: description,
-            keywords: keywords
-          }
-        );
-      }
-    );
+    Promise.all([
+      FindAllDocumentationCategories(),
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
+    ]).then(result => {
+      res.render(
+        "../../../expansion/upgrade/documentation-builder/views/add_documentation",
+        {
+          title: title,
+          content: content,
+          categories: result[0],
+          price: price,
+          media: result[1],
+          description: description,
+          keywords: keywords,
+          theUser: result[2]
+        }
+      );
+    });
   } /* end of add index function */,
 
   create(req, res, next) {
@@ -142,7 +150,8 @@ module.exports = {
     Promise.all([
       FindAllDocumentationCategories(),
       FindOneDocumentationByID(req.params.id),
-      FindAllMedia()
+      FindAllMedia(),
+      FindOneAdminByID(req.session.passport.user)
     ]).then(result => {
       res.render(
         "../../../expansion/upgrade/documentation-builder/views/edit_documentation",
@@ -154,7 +163,8 @@ module.exports = {
           id: result[1]._id,
           media: result[2],
           description: result[1].description,
-          keywords: result[1].keywords
+          keywords: result[1].keywords,
+          theUser: result[3]
         }
       );
     });
